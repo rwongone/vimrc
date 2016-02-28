@@ -36,13 +36,8 @@ set pastetoggle=<F2>
 filetype plugin indent on
 autocmd filetype python set expandtab
 
-if &t_Co >= 256 || has("gui_running")
-    colorscheme mustang
-endif
-
-if &t_Co > 2 || has("gui_running")
-    syntax on
-endif
+syntax on
+colorscheme monokai
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
@@ -60,10 +55,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 " Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Double quote word
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
 
 " Disable some default keys
 inoremap <esc> <nop>
