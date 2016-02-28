@@ -11,6 +11,8 @@ set numberwidth=3
 
 set hidden
 set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set backspace=indent,eol,start
 set autoindent
 set copyindent
@@ -19,7 +21,7 @@ set shiftround
 set showmatch
 set ignorecase
 set smartcase
-set smarttab
+set expandtab
 set hlsearch
 set incsearch
 
@@ -42,6 +44,7 @@ autocmd filetype python set expandtab
 
 syntax on
 colorscheme monokai
+hi Normal ctermbg=NONE
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
