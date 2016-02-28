@@ -33,6 +33,10 @@ set noswapfile
 
 set pastetoggle=<F2>
 
+"Performance settings.
+set ttyfast
+set lazyredraw
+
 filetype plugin indent on
 autocmd filetype python set expandtab
 
