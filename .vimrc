@@ -37,7 +37,7 @@ set pastetoggle=<F2>
 "Performance settings.
 set ttyfast
 set lazyredraw
-set synmaxcol=160
+"set synmaxcol=300
 
 "Scroll settings.
 set scrolloff=6
@@ -119,6 +119,9 @@ nnoremap } }zz
 " Auto-indent HTML files on read or write.
 "autocmd BufWritePre,BufRead *.html :normal gg=G
 "autocmd BufNewFile,BufRead *.html setlocal nowrap
+
+" Trim trailing whitespace on save.
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Comment lines
 "autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
