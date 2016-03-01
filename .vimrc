@@ -6,7 +6,6 @@ let mapleader=" "
 " Hit jk to escape
 inoremap jk <esc>
 
-set number
 set numberwidth=3
 
 set hidden
@@ -48,6 +47,14 @@ set shortmess+=I
 
 " Replace all occurences in line by default.
 set gdefault
+
+" Use <leader>p to open ctrlp
+let g:ctrlp_map = '<leader>p'
+" Ignore these directories
+set wildignore+=*/build/**
+set wildignore+=*.class
+" disable caching
+let g:ctrlp_use_caching=0
 
 " Consistent yank.
 nnoremap Y y$
@@ -117,16 +124,28 @@ nnoremap } }zz
 nnoremap <c-s> :w<CR>
 inoremap <c-s> <Esc>:w<CR>a
 
+" Toggle NERDTree.
+nnoremap <leader>d :NERDTreeToggle<CR>
+
+" Highlight cursor on <leader>c.
+hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
 " Trim trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
 
 " Syntax highlighting.
+syntax on
+colorscheme monokai
+hi NonText cterm=NONE ctermfg=NONE
+hi Normal ctermbg=NONE
+
 au BufReadPost,BufNewFile *.twig colorscheme koehler
 au BufReadPost,BufNewFile *.css colorscheme slate
 au BufReadPost,BufNewFile *.js colorscheme slate2
 au BufReadPost,BufNewFile *.py colorscheme molokaiyo
 au BufReadPost,BufNewFile *.html colorscheme monokai
-au BufReadPost,BufNewFile *.java colorscheme monokai
 
 autocmd FileType c,cpp,java,scala let b:comment_leader = '//'
 autocmd FileType sh,ruby,python   let b:comment_leader = '#'
@@ -135,8 +154,10 @@ autocmd FileType tex              let b:comment_leader = '%'
 autocmd FileType mail             let b:comment_leader = '>'
 autocmd FileType vim              let b:comment_leader = '"'
 
-syntax on
-colorscheme monokai
-hi NonText cterm=NONE ctermfg=NONE
-hi Normal ctermbg=NONE
+set number
+set rnu
+autocmd InsertEnter * :set rnu! | :set nu
+autocmd InsertLeave * :set rnu! | :set nu!
+
+let delimitMate_expand_cr = 1
 
