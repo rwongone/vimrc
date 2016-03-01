@@ -32,6 +32,7 @@ set noeb vb t_vb=
 set nobackup
 set noswapfile
 
+noremap <F2> :set invpaste paste?<CR>i
 set pastetoggle=<F2>
 
 "Performance settings.
@@ -53,11 +54,7 @@ nnoremap Y y$
 
 "filetype plugin indent on
 "autocmd filetype python set expandtab
-
-syntax on
-colorscheme monokai
-hi NonText cterm=NONE ctermfg=NONE
-hi Normal ctermbg=NONE
+autocmd filetype make set noexpandtab
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :noh<CR><CR>
@@ -96,7 +93,7 @@ noremap <leader>j <C-w>j
 noremap <leader>k <C-w>k
 noremap <leader>l <C-w>l
 
-noremap <Right> <nop> 
+noremap <Right> <nop>
 noremap <Left> <nop>
 noremap <Up> <nop>
 noremap <Down> <nop>
@@ -116,14 +113,30 @@ nnoremap Q gqap
 nnoremap n nzz
 nnoremap } }zz
 
-" Auto-indent HTML files on read or write.
-"autocmd BufWritePre,BufRead *.html :normal gg=G
-"autocmd BufNewFile,BufRead *.html setlocal nowrap
+" Save with CTRL-S
+nnoremap <c-s> :w<CR>
+inoremap <c-s> <Esc>:w<CR>a
 
 " Trim trailing whitespace on save.
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Comment lines
-"autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-"autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+" Syntax highlighting.
+au BufReadPost,BufNewFile *.twig colorscheme koehler
+au BufReadPost,BufNewFile *.css colorscheme slate
+au BufReadPost,BufNewFile *.js colorscheme slate2
+au BufReadPost,BufNewFile *.py colorscheme molokaiyo
+au BufReadPost,BufNewFile *.html colorscheme monokai
+au BufReadPost,BufNewFile *.java colorscheme monokai
+
+autocmd FileType c,cpp,java,scala let b:comment_leader = '//'
+autocmd FileType sh,ruby,python   let b:comment_leader = '#'
+autocmd FileType conf,fstab       let b:comment_leader = '#'
+autocmd FileType tex              let b:comment_leader = '%'
+autocmd FileType mail             let b:comment_leader = '>'
+autocmd FileType vim              let b:comment_leader = '"'
+
+syntax on
+colorscheme monokai
+hi NonText cterm=NONE ctermfg=NONE
+hi Normal ctermbg=NONE
 
